@@ -4,7 +4,7 @@ abstract class Animal : LivingBeing
 {
     public abstract void Eat();
 
-    public void Reproduce()
+    public virtual void Reproduce()
     {
         Console.WriteLine("Have Sex");
     }

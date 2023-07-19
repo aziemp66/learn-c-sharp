@@ -34,4 +34,9 @@ class Person : Animal
     {
         Console.WriteLine("I'm Eating Meat and Vegetable");
     }
+
+    public override void Reproduce()
+    {
+        Console.WriteLine("Pregnancy");
+    }
 }
