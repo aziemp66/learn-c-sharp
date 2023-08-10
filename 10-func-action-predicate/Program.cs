@@ -126,44 +126,46 @@
                 }
             );
 
-            //Filter Employee : Find Only Male Employee
-            List<Employee> maleEmployeesFiltered = Extensions.FilterEmployee(
-                employees,
-                e => e.Gender == 'm'
-            );
+            // //Filter Employee : Find Only Male Employee
+            // List<Employee> maleEmployeesFiltered = Extensions.FilterEmployee(
+            //     employees,
+            //     e => e.Gender == 'm'
+            // );
+            //
+            // Console.WriteLine("All Male Employees");
+            // foreach (var item in maleEmployeesFiltered)
+            // {
+            //     displayEmployeeDetails(
+            //         item.Id,
+            //         item.FirstName,
+            //         item.LastName,
+            //         item.AnnualSalary,
+            //         item.Gender,
+            //         item.IsManager
+            //     );
+            //     Console.WriteLine();
+            // }
+            //
+            // List<Employee> moreThan500MSalaryEmployees = Extensions.FilterEmployee(
+            //     employees,
+            //     e => e.AnnualSalary > 500_000_000m
+            // );
+            //
+            // Console.WriteLine("All Employees who made more than 500 Mil");
+            // foreach (var item in moreThan500MSalaryEmployees)
+            // {
+            //     displayEmployeeDetails(
+            //         item.Id,
+            //         item.FirstName,
+            //         item.LastName,
+            //         item.AnnualSalary,
+            //         item.Gender,
+            //         item.IsManager
+            //     );
+            //     Console.WriteLine();
+            // }
 
-            Console.WriteLine("All Male Employees");
-            foreach (var item in maleEmployeesFiltered)
-            {
-                displayEmployeeDetails(
-                    item.Id,
-                    item.FirstName,
-                    item.LastName,
-                    item.AnnualSalary,
-                    item.Gender,
-                    item.IsManager
-                );
-                Console.WriteLine();
-            }
-
-            List<Employee> moreThan500MSalaryEmployees = Extensions.FilterEmployee(
-                employees,
-                e => e.AnnualSalary > 500_000_000m
-            );
-
-            Console.WriteLine("All Employees who made more than 500 Mil");
-            foreach (var item in moreThan500MSalaryEmployees)
-            {
-                displayEmployeeDetails(
-                    item.Id,
-                    item.FirstName,
-                    item.LastName,
-                    item.AnnualSalary,
-                    item.Gender,
-                    item.IsManager
-                );
-                Console.WriteLine();
-            }
+            List<Employee> employeesFiltered = employees.FilterEmployee(e => e.IsManager == true);
         }
     }
 }
