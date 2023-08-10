@@ -165,7 +165,23 @@
             //     Console.WriteLine();
             // }
 
-            List<Employee> employeesFiltered = employees.FilterEmployee(e => e.IsManager == true);
+            // List<Employee> employeesFiltered = employees.FilterEmployee(e => e.IsManager == true);
+            // foreach (var item in employeesFiltered)
+            // {
+            //     displayEmployeeDetails(
+            //         item.Id,
+            //         item.FirstName,
+            //         item.LastName,
+            //         item.AnnualSalary,
+            //         item.Gender,
+            //         item.IsManager
+            //     );
+            //     Console.WriteLine();
+            // }
+
+            List<Employee> employeesFiltered = employees
+                .Where(e => e.AnnualSalary > 500_000_000m)
+                .ToList();
             foreach (var item in employeesFiltered)
             {
                 displayEmployeeDetails(
