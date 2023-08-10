@@ -166,6 +166,18 @@
             // }
 
             List<Employee> employeesFiltered = employees.FilterEmployee(e => e.IsManager == true);
+            foreach (var item in employeesFiltered)
+            {
+                displayEmployeeDetails(
+                    item.Id,
+                    item.FirstName,
+                    item.LastName,
+                    item.AnnualSalary,
+                    item.Gender,
+                    item.IsManager
+                );
+                Console.WriteLine();
+            }
         }
     }
 }
