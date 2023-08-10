@@ -1,5 +1,36 @@
 ﻿namespace Program
 {
+    static class Extensions
+    {
+        public static List<Employee> FilterEmployee(
+            this List<Employee> employees,
+            Predicate<Employee> predicate
+        )
+        {
+            List<Employee> FilteredEmployee = new List<Employee>();
+
+            foreach (Employee employee in employees)
+            {
+                if (predicate(employee))
+                {
+                    FilteredEmployee.Add(employee);
+                }
+            }
+
+            return FilteredEmployee;
+        }
+    }
+
+    class Employee
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+        public decimal AnnualSalary { get; set; }
+        public char Gender { get; set; }
+        public bool IsManager { get; set; }
+    }
+
     class Program
     {
         delegate TResult Func2<out TResult>();
@@ -31,10 +62,10 @@
 
             decimal result = calculateTotalAnnualSalary(30_800_000m, 20.5m);
 
-            Console.WriteLine($"Result : {result}");
+            // Console.WriteLine($"Result : {result}");
 
-            ///*********Action
-            Action<int, string, string, decimal, char, bool> displayEmployeeRecords = (
+            //*********Action
+            Action<int, string, string, decimal, char, bool> displayEmployeeDetails = (
                 args1,
                 args2,
                 args3,
@@ -46,7 +77,93 @@
                     $"Id : {args1}\nFirst Name : {args2}\nLast Name : {args3}\nAnnual Salary : {args4}\nGender : {args5}\nIs Manager : {args6}\n"
                 );
 
-            displayEmployeeRecords(123, "Azie", "Melza Pratama", 750_000_000m, 'm', true);
+            // displayEmployeeDetails(123, "Azie", "Melza Pratama", 750_000_000m, 'm', true);
+
+            //************Predicate
+            List<Employee> employees = new List<Employee>();
+            employees.Add(
+                new Employee
+                {
+                    Id = 1,
+                    FirstName = "Azie",
+                    LastName = "Melza Pratama",
+                    AnnualSalary = 750_000_000m,
+                    Gender = 'm',
+                    IsManager = true
+                }
+            );
+            employees.Add(
+                new Employee
+                {
+                    Id = 2,
+                    FirstName = "John",
+                    LastName = "Doe",
+                    AnnualSalary = 500_000_000m,
+                    Gender = 'm',
+                    IsManager = false
+                }
+            );
+            employees.Add(
+                new Employee
+                {
+                    Id = 3,
+                    FirstName = "Mei",
+                    LastName = "Suzuka",
+                    AnnualSalary = 650_000_000m,
+                    Gender = 'f',
+                    IsManager = true
+                }
+            );
+            employees.Add(
+                new Employee
+                {
+                    Id = 4,
+                    FirstName = "Tiffany",
+                    LastName = "Smith",
+                    AnnualSalary = 480_000_000m,
+                    Gender = 'f',
+                    IsManager = false
+                }
+            );
+
+            //Filter Employee : Find Only Male Employee
+            List<Employee> maleEmployeesFiltered = Extensions.FilterEmployee(
+                employees,
+                e => e.Gender == 'm'
+            );
+
+            Console.WriteLine("All Male Employees");
+            foreach (var item in maleEmployeesFiltered)
+            {
+                displayEmployeeDetails(
+                    item.Id,
+                    item.FirstName,
+                    item.LastName,
+                    item.AnnualSalary,
+                    item.Gender,
+                    item.IsManager
+                );
+                Console.WriteLine();
+            }
+
+            List<Employee> moreThan500MSalaryEmployees = Extensions.FilterEmployee(
+                employees,
+                e => e.AnnualSalary > 500_000_000m
+            );
+
+            Console.WriteLine("All Employees who made more than 500 Mil");
+            foreach (var item in moreThan500MSalaryEmployees)
+            {
+                displayEmployeeDetails(
+                    item.Id,
+                    item.FirstName,
+                    item.LastName,
+                    item.AnnualSalary,
+                    item.Gender,
+                    item.IsManager
+                );
+                Console.WriteLine();
+            }
         }
     }
 }
