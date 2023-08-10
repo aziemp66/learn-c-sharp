@@ -32,6 +32,21 @@
             decimal result = calculateTotalAnnualSalary(30_800_000m, 20.5m);
 
             Console.WriteLine($"Result : {result}");
+
+            ///*********Action
+            Action<int, string, string, decimal, char, bool> displayEmployeeRecords = (
+                args1,
+                args2,
+                args3,
+                args4,
+                args5,
+                args6
+            ) =>
+                Console.Write(
+                    $"Id : {args1}\nFirst Name : {args2}\nLast Name : {args3}\nAnnual Salary : {args4}\nGender : {args5}\nIs Manager : {args6}\n"
+                );
+
+            displayEmployeeRecords(123, "Azie", "Melza Pratama", 750_000_000m, 'm', true);
         }
     }
 }
