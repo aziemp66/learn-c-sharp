@@ -55,27 +55,94 @@ public static class CarFactory
 class Program
 {
     delegate Car CarFactoryDel(int id, string name);
+    delegate void LogICECarDetail(ICECar iceCar);
+    delegate void LogEVCarDetail(EVCar evCar);
+
+    static void LogCarDetailToText(Car car)
+    {
+        string objectType = $"Object Type : {car.GetType()}";
+        string details = $"Car Details : {car.GetCarDetails()}";
+
+        int maxStringLength = Math.Max(objectType.Length, details.Length);
+
+        string seperator = "";
+
+        for (int i = 0; i < maxStringLength; i++)
+        {
+            seperator += "/";
+        }
+
+        if (car is ICECar)
+        {
+            using (
+                StreamWriter sw = new StreamWriter(
+                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ICEDetails.txt"),
+                    true
+                )
+            )
+            {
+                sw.WriteLine(seperator);
+                sw.WriteLine(objectType);
+                sw.WriteLine(details);
+                sw.WriteLine(seperator);
+            }
+        }
+        else if (car is EVCar)
+        {
+            using (
+                StreamWriter sw = new StreamWriter(
+                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EVDetails.txt"),
+                    true
+                )
+            )
+            {
+                sw.WriteLine(seperator);
+                sw.WriteLine(objectType);
+                sw.WriteLine(details);
+                sw.WriteLine(seperator);
+            }
+        }
+    }
 
     static void Main(string[] args)
     {
         CarFactoryDel carFactoryDel = CarFactory.ReturnICECar;
 
-        Car IceCar = carFactoryDel.Invoke(1, "Audi R8");
+        Car IceCar = carFactoryDel(1, "Audi R8");
+
+        carFactoryDel = CarFactory.ReturnEVCar;
+
+        Car EvCar = carFactoryDel(2, "Tesla Model X");
 
         Console.WriteLine($"Object Type : {IceCar.GetType()}");
         Console.WriteLine($"Car Details : {IceCar.GetCarDetails()}");
         Console.WriteLine();
 
-        carFactoryDel = CarFactory.ReturnEVCar;
+        Console.WriteLine($"Object Type : {EvCar.GetType()}");
+        Console.WriteLine($"Car Details : {EvCar.GetCarDetails()}");
 
-        Car EVCar = carFactoryDel.Invoke(2, "Tesla Model X");
+        LogICECarDetail logICECarDetailsDel = LogCarDetailToText;
 
-        Console.WriteLine($"Object Type : {EVCar.GetType()}");
-        Console.WriteLine($"Car Details : {EVCar.GetCarDetails()}");
-    }
+        LogEVCarDetail logEVCarDetailsDel = LogCarDetailToText;
 
-    static void PrintICECar(ICECar iceCar)
-    {
-        Console.WriteLine(iceCar.Name);
+        // Check if IceCar is not null before invoking the delegate
+        if (IceCar is ICECar iceCar)
+        {
+            logICECarDetailsDel(iceCar);
+        }
+        else
+        {
+            Console.WriteLine("ICECar is null.");
+        }
+
+        // Check if EvCar is not null before invoking the delegate
+        if (EvCar is EVCar evCar)
+        {
+            logEVCarDetailsDel(evCar);
+        }
+        else
+        {
+            Console.WriteLine("EVCar is null.");
+        }
     }
 }
