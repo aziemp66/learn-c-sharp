@@ -1,3 +1,4 @@
 {
-	"dotnet.defaultSolution": "12-events-accessors.sln"
+	"dotnet.defaultSolution": "12-events-accessors.sln",
+	"editor.tabSize": 2,
 }
