@@ -52,7 +52,9 @@ class Program
         Task<FriedEgg> friedEggTask = CookFriedEggAsync();
         Task<Rice> riceTask = CookRiceAsync();
         // Each Task Will not block each other and run simulataneously
-        await Task.WhenAll(indomieTask, friedEggTask, riceTask);
+        Indomie indomie = await indomieTask;
+        FriedEgg friedEgg = await friedEggTask;
+        Rice rice = await riceTask;
 
         // preparingMealTask will wait for all other task to complete before running
         Task preparingMealTask = PreparingMealAsync();
