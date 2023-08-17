@@ -1,4 +1,4 @@
-namespace tcp_data;
+namespace TCPData;
 
 using System.Collections.Generic;
 

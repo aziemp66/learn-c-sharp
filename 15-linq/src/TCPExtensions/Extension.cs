@@ -1,4 +1,4 @@
-namespace tcp_extensions;
+namespace TCPExtensions;
 
 using System.Collections.Generic;
 
@@ -14,6 +14,6 @@ public static class Extension
                 filteredList.Add(record);
             }
         }
-        return records;
+        return filteredList;
     }
 }
