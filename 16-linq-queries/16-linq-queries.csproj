@@ -4,7 +4,7 @@
     <InvariantGlobalization>false</InvariantGlobalization>
     <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>_15_linq</RootNamespace>
+    <RootNamespace>_15_linq_queries</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>

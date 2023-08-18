@@ -5,7 +5,6 @@ using TCPExtensions;
 using System.Collections.Generic;
 using System.Linq;
 using System.Globalization;
-using System.Threading;
 
 public static class EnumerableCollectionExtensionsMethods
 {
@@ -79,14 +78,62 @@ class Program
         //     };
 
         // Immediate Execution
-        var results = (
-            from emp in employeeList.GetHighSalariedEmployees()
+        // var results = (
+        //     from emp in employeeList.GetHighSalariedEmployees()
+        //     select new
+        //     {
+        //         FullName = $"{emp.FirstName} {emp.LastName}",
+        //         AnnualSalary = emp.AnnualSalary
+        //     }
+        // ).ToList();
+        //
+        // employeeList.Add(
+        //     new Employee
+        //     {
+        //         Id = 5,
+        //         FirstName = "Nabil",
+        //         LastName = "Juliano",
+        //         AnnualSalary = 150_000m
+        //     }
+        // );
+        //
+        // foreach (var item in results)
+        // {
+        //     Console.WriteLine(
+        //         $"{item.FullName,-20} : {item.AnnualSalary.ToString("C0", new CultureInfo("fr-FR")),10}"
+        //     );
+        // }
+
+        // Join Operation Example - Method Syntax
+        // var results = departmentList.Join(
+        //     employeeList,
+        //     department => department.Id,
+        //     employee => employee.DepartmentId,
+        //     (department, employee) =>
+        //         new
+        //         {
+        //             FullName = $"{employee.FirstName} {employee.LastName}",
+        //             AnnualSalary = employee.AnnualSalary,
+        //             DepartmentName = department.LongName
+        //         }
+        // );
+        // foreach (var item in results)
+        // {
+        //     Console.WriteLine(
+        //         $"{item.FullName,-20} : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")),10}\t{item.DepartmentName}"
+        //     );
+        // }
+
+        // Join Operation Example - Query Syntax
+        var results =
+            from emp in employeeList
+            join dept in departmentList on emp.DepartmentId equals dept.Id
             select new
             {
                 FullName = $"{emp.FirstName} {emp.LastName}",
-                AnnualSalary = emp.AnnualSalary
-            }
-        ).ToList();
+                AnnualSalary = emp.AnnualSalary,
+                DepartmentName = dept.LongName
+            };
 
         employeeList.Add(
             new Employee
@@ -94,15 +141,18 @@ class Program
                 Id = 5,
                 FirstName = "Nabil",
                 LastName = "Juliano",
-                AnnualSalary = 150_000m
+                AnnualSalary = 299_000m,
+                DepartmentId = 3
             }
         );
 
+        int count = 1;
         foreach (var item in results)
         {
             Console.WriteLine(
-                $"{item.FullName,-20} : {item.AnnualSalary.ToString("C0", new CultureInfo("fr-FR")),10}"
+                $"{$"{count}.",-3} {item.FullName,-20} : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")),10}\t{item.DepartmentName}"
             );
+            count++;
         }
     }
 }
