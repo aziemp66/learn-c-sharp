@@ -156,13 +156,32 @@ class Program
         // }
 
         // Group Join Operation - Method Syntax
-        var results = departmentList.GroupJoin(
-            employeeList,
-            dept => dept.Id,
-            emp => emp.DepartmentId,
-            (dept, employessGroup) =>
-                new { DepartmentName = dept.LongName, Employees = employessGroup, }
-        );
+        // var results = departmentList.GroupJoin(
+        //     employeeList,
+        //     dept => dept.Id,
+        //     emp => emp.DepartmentId,
+        //     (dept, employessGroup) =>
+        //         new { DepartmentName = dept.LongName, Employees = employessGroup, }
+        // );
+        //
+        // foreach (var item in results)
+        // {
+        //     Console.WriteLine($"Department Name : {item.DepartmentName}");
+        //     Console.WriteLine("Employee List :");
+        //     int count = 1;
+        //     foreach (var emp in item.Employees)
+        //     {
+        //         Console.WriteLine($"{$"{count}.",-3} {emp.FirstName} {emp.LastName}");
+        //         count++;
+        //     }
+        //     Console.WriteLine();
+        // }
+
+        // Group Join Operartion - Query Syntax
+        var results =
+            from dept in departmentList
+            join emp in employeeList on dept.Id equals emp.DepartmentId into employeeGroup
+            select new { DepartmentName = dept.LongName, Employees = employeeGroup, };
 
         foreach (var item in results)
         {
