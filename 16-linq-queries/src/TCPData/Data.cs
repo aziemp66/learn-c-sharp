@@ -43,7 +43,7 @@ public static class Data
             Id = 4,
             FirstName = "Jane",
             LastName = "Stevens",
-            AnnualSalary = 30000.2m,
+            AnnualSalary = 200_000.2m,
             IsManager = false,
             DepartmentId = 3
         };
@@ -75,6 +75,13 @@ public static class Data
             Id = 3,
             ShortName = "TE",
             LongName = "Technology"
+        };
+        departments.Add(department);
+        department = new Department
+        {
+            Id = 4,
+            ShortName = "MD",
+            LongName = "Media"
         };
         departments.Add(department);
 

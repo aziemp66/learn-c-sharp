@@ -125,34 +125,56 @@ class Program
         // }
 
         // Join Operation Example - Query Syntax
-        var results =
-            from emp in employeeList
-            join dept in departmentList on emp.DepartmentId equals dept.Id
-            select new
-            {
-                FullName = $"{emp.FirstName} {emp.LastName}",
-                AnnualSalary = emp.AnnualSalary,
-                DepartmentName = dept.LongName
-            };
+        // var results =
+        //     from emp in employeeList
+        //     join dept in departmentList on emp.DepartmentId equals dept.Id
+        //     select new
+        //     {
+        //         FullName = $"{emp.FirstName} {emp.LastName}",
+        //         AnnualSalary = emp.AnnualSalary,
+        //         DepartmentName = dept.LongName
+        //     };
+        //
+        // employeeList.Add(
+        //     new Employee
+        //     {
+        //         Id = 5,
+        //         FirstName = "Nabil",
+        //         LastName = "Juliano",
+        //         AnnualSalary = 299_000m,
+        //         DepartmentId = 3
+        //     }
+        // );
+        //
+        // int count = 1;
+        // foreach (var item in results)
+        // {
+        //     Console.WriteLine(
+        //         $"{$"{count}.",-3} {item.FullName,-20} : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")),10}\t{item.DepartmentName}"
+        //     );
+        //     count++;
+        // }
 
-        employeeList.Add(
-            new Employee
-            {
-                Id = 5,
-                FirstName = "Nabil",
-                LastName = "Juliano",
-                AnnualSalary = 299_000m,
-                DepartmentId = 3
-            }
+        // Group Join Operation - Method Syntax
+        var results = departmentList.GroupJoin(
+            employeeList,
+            dept => dept.Id,
+            emp => emp.DepartmentId,
+            (dept, employessGroup) =>
+                new { DepartmentName = dept.LongName, Employees = employessGroup, }
         );
 
-        int count = 1;
         foreach (var item in results)
         {
-            Console.WriteLine(
-                $"{$"{count}.",-3} {item.FullName,-20} : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")),10}\t{item.DepartmentName}"
-            );
-            count++;
+            Console.WriteLine($"Department Name : {item.DepartmentName}");
+            Console.WriteLine("Employee List :");
+            int count = 1;
+            foreach (var emp in item.Employees)
+            {
+                Console.WriteLine($"{$"{count}.",-3} {emp.FirstName} {emp.LastName}");
+                count++;
+            }
+            Console.WriteLine();
         }
     }
 }
