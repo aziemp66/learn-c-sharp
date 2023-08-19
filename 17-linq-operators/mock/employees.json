@@ -1,0 +1,202 @@
+[
+  {
+    "id": 1,
+    "first_name": "Lizette",
+    "last_name": "Kira",
+    "annual_salary": 370925.71,
+    "is_manager": true,
+    "department_id": 3
+  },
+  {
+    "id": 2,
+    "first_name": "Gallard",
+    "last_name": "Ditts",
+    "annual_salary": 49994.01,
+    "is_manager": true,
+    "department_id": 4
+  },
+  {
+    "id": 3,
+    "first_name": "Franklyn",
+    "last_name": "Twigley",
+    "annual_salary": 314773.9,
+    "is_manager": true,
+    "department_id": 2
+  },
+  {
+    "id": 4,
+    "first_name": "Sidonnie",
+    "last_name": "Garahan",
+    "annual_salary": 376655.02,
+    "is_manager": false,
+    "department_id": 4
+  },
+  {
+    "id": 5,
+    "first_name": "Linda",
+    "last_name": "Skeen",
+    "annual_salary": 499729.33,
+    "is_manager": true,
+    "department_id": 2
+  },
+  {
+    "id": 6,
+    "first_name": "Rafaellle",
+    "last_name": "Brideau",
+    "annual_salary": 373576.8,
+    "is_manager": false,
+    "department_id": 3
+  },
+  {
+    "id": 7,
+    "first_name": "Ryley",
+    "last_name": "Larciere",
+    "annual_salary": 94387.11,
+    "is_manager": false,
+    "department_id": 4
+  },
+  {
+    "id": 8,
+    "first_name": "Cathyleen",
+    "last_name": "Diggles",
+    "annual_salary": 13713.67,
+    "is_manager": true,
+    "department_id": 4
+  },
+  {
+    "id": 9,
+    "first_name": "Kira",
+    "last_name": "Markie",
+    "annual_salary": 161044.08,
+    "is_manager": true,
+    "department_id": 1
+  },
+  {
+    "id": 10,
+    "first_name": "Boycie",
+    "last_name": "Dockwra",
+    "annual_salary": 397915.54,
+    "is_manager": false,
+    "department_id": 3
+  },
+  {
+    "id": 11,
+    "first_name": "Darcie",
+    "last_name": "Grigolli",
+    "annual_salary": 423372.41,
+    "is_manager": false,
+    "department_id": 2
+  },
+  {
+    "id": 12,
+    "first_name": "Chandra",
+    "last_name": "Callar",
+    "annual_salary": 265053.3,
+    "is_manager": false,
+    "department_id": 2
+  },
+  {
+    "id": 13,
+    "first_name": "Jerrie",
+    "last_name": "Corck",
+    "annual_salary": 449061.15,
+    "is_manager": true,
+    "department_id": 4
+  },
+  {
+    "id": 14,
+    "first_name": "Meredith",
+    "last_name": "Sharpe",
+    "annual_salary": 407313.02,
+    "is_manager": false,
+    "department_id": 1
+  },
+  {
+    "id": 15,
+    "first_name": "Addie",
+    "last_name": "Attrie",
+    "annual_salary": 226180.63,
+    "is_manager": true,
+    "department_id": 3
+  },
+  {
+    "id": 16,
+    "first_name": "Renaldo",
+    "last_name": "Hansie",
+    "annual_salary": 106598.8,
+    "is_manager": false,
+    "department_id": 3
+  },
+  {
+    "id": 17,
+    "first_name": "Nevil",
+    "last_name": "Hardstaff",
+    "annual_salary": 443623.08,
+    "is_manager": true,
+    "department_id": 3
+  },
+  {
+    "id": 18,
+    "first_name": "Carlina",
+    "last_name": "Leedal",
+    "annual_salary": 216364.47,
+    "is_manager": true,
+    "department_id": 2
+  },
+  {
+    "id": 19,
+    "first_name": "Kelsey",
+    "last_name": "Maykin",
+    "annual_salary": 467449.07,
+    "is_manager": false,
+    "department_id": 3
+  },
+  {
+    "id": 20,
+    "first_name": "Dallas",
+    "last_name": "Seaton",
+    "annual_salary": 280634.81,
+    "is_manager": true,
+    "department_id": 4
+  },
+  {
+    "id": 21,
+    "first_name": "Delly",
+    "last_name": "Bidewell",
+    "annual_salary": 369977.92,
+    "is_manager": true,
+    "department_id": 4
+  },
+  {
+    "id": 22,
+    "first_name": "Vic",
+    "last_name": "Cranton",
+    "annual_salary": 393547.98,
+    "is_manager": true,
+    "department_id": 1
+  },
+  {
+    "id": 23,
+    "first_name": "Jorry",
+    "last_name": "Iston",
+    "annual_salary": 205252.49,
+    "is_manager": false,
+    "department_id": 4
+  },
+  {
+    "id": 24,
+    "first_name": "Bill",
+    "last_name": "Hundy",
+    "annual_salary": 129535.52,
+    "is_manager": true,
+    "department_id": 2
+  },
+  {
+    "id": 25,
+    "first_name": "Jerrie",
+    "last_name": "Bertenshaw",
+    "annual_salary": 412091.57,
+    "is_manager": false,
+    "department_id": 2
+  }
+]

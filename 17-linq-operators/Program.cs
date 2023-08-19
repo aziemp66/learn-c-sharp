@@ -1,12 +1,13 @@
 ﻿namespace LinqOperators;
 
+using System.Globalization;
 using TCPData;
 
 public class Program
 {
     static void Main(string[] args)
     {
-        var employeeList = Data.GetEmployees();
+        var employeeList = Dummy.GetEmployees();
         var departmentList = Data.GetDepartments();
 
         // OrderByOperator(employeeList, departmentList);
@@ -63,10 +64,11 @@ public class Program
 
         // or OrderByDescending
         // or ThenByDescending
+        // You can add Reverse to reverse all order
 
         foreach (var item in results)
             Console.WriteLine(
-                $"Id : {item.Id, -5} First Name : {item.FirstName, -10} Last Name : {item.LastName, -10} Annual Salary : {item.AnnualSalary, 10}\tDepartment : {item.DepartmentName}"
+                $"Id : {item.Id, -5} First Name : {item.FirstName, -10} Last Name : {item.LastName, -10} Annual Salary : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")), 10}\tDepartment : {item.DepartmentName}"
             );
     }
 }
