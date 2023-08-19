@@ -14,7 +14,9 @@ public class Program
         // OrderByQuerySyntax(employeeList, departmentList);
 
         // ThenByMethodSyntax(employeeList, departmentList);
-        ThenByQuerySyntax(employeeList, departmentList);
+        // ThenByQuerySyntax(employeeList, departmentList);
+
+        GroupByMethodSyntax(employeeList, departmentList);
     }
 
     static void OrderByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
@@ -115,5 +117,22 @@ public class Program
             Console.WriteLine(
                 $"Id : {item.Id,-5} First Name : {item.FirstName,-10} Last Name : {item.LastName,-10} Annual Salary : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")),10}\tDepartment : {item.DepartmentName}"
             );
+    }
+
+    static void GroupByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var groupedByDepartment = employeeList.GroupBy(e => e.DepartmentId);
+
+        foreach (var group in groupedByDepartment)
+        {
+            Console.WriteLine($"Department ID : {group.Key}");
+            int count = 1;
+            foreach (var item in group)
+            {
+                Console.WriteLine($"{count,3}. {item.FirstName} {item.LastName}");
+                count++;
+            }
+            Console.WriteLine();
+        }
     }
 }
