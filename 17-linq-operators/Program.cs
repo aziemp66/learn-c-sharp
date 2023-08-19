@@ -10,11 +10,14 @@ public class Program
         var employeeList = Dummy.GetEmployees();
         var departmentList = Data.GetDepartments();
 
-        // OrderByOperator(employeeList, departmentList);
-        ThenByOperator(employeeList, departmentList);
+        // OrderByMethodSyntax(employeeList,departmentList);
+        // OrderByQuerySyntax(employeeList, departmentList);
+
+        // ThenByMethodSyntax(employeeList, departmentList);
+        ThenByQuerySyntax(employeeList, departmentList);
     }
 
-    static void OrderByOperator(List<Employee> employeeList, List<Department> departmentList)
+    static void OrderByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
     {
         var results = employeeList
             .Join(
@@ -37,11 +40,32 @@ public class Program
 
         foreach (var item in results)
             Console.WriteLine(
-                $"Id : {item.Id, -5} First Name : {item.FirstName, -10} Last Name : {item.LastName, -10} Annual Salary : {item.AnnualSalary, 10}\tDepartment : {item.DepartmentName}"
+                $"Id : {item.Id,-5} First Name : {item.FirstName,-10} Last Name : {item.LastName,-10} Annual Salary : {item.AnnualSalary,10}\tDepartment : {item.DepartmentName}"
             );
     }
 
-    static void ThenByOperator(List<Employee> employeeList, List<Department> departmentList)
+    static void OrderByQuerySyntax(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results =
+            from emp in employeeList
+            join dept in departmentList on emp.DepartmentId equals dept.Id
+            orderby dept.Id
+            select new
+            {
+                Id = emp.Id,
+                FirstName = emp.FirstName,
+                LastName = emp.LastName,
+                AnnualSalary = emp.AnnualSalary,
+                DepartmentName = dept.LongName
+            };
+
+        foreach (var item in results)
+            Console.WriteLine(
+                $"Id : {item.Id,-5} First Name : {item.FirstName,-10} Last Name : {item.LastName,-10} Annual Salary : {item.AnnualSalary,10}\tDepartment : {item.DepartmentName}"
+            );
+    }
+
+    static void ThenByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
     {
         var results = employeeList
             .Join(
@@ -68,7 +92,28 @@ public class Program
 
         foreach (var item in results)
             Console.WriteLine(
-                $"Id : {item.Id, -5} First Name : {item.FirstName, -10} Last Name : {item.LastName, -10} Annual Salary : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")), 10}\tDepartment : {item.DepartmentName}"
+                $"Id : {item.Id,-5} First Name : {item.FirstName,-10} Last Name : {item.LastName,-10} Annual Salary : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")),10}\tDepartment : {item.DepartmentName}"
+            );
+    }
+
+    static void ThenByQuerySyntax(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results =
+            from emp in employeeList
+            join dept in departmentList on emp.DepartmentId equals dept.Id
+            orderby dept.Id descending, emp.AnnualSalary /* add 'descending' keyword to descend */
+            select new
+            {
+                Id = emp.Id,
+                FirstName = emp.FirstName,
+                LastName = emp.LastName,
+                AnnualSalary = emp.AnnualSalary,
+                DepartmentName = dept.LongName
+            };
+
+        foreach (var item in results)
+            Console.WriteLine(
+                $"Id : {item.Id,-5} First Name : {item.FirstName,-10} Last Name : {item.LastName,-10} Annual Salary : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")),10}\tDepartment : {item.DepartmentName}"
             );
     }
 }
