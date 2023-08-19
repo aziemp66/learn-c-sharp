@@ -19,7 +19,10 @@ public class Program
         // GroupByMethodSyntax(employeeList, departmentList);
         // GroupByQuerySyntax(employeeList, departmentList);
 
-        ToLookUpMethodSyntax(employeeList, departmentList);
+        // ToLookUpMethodSyntax(employeeList, departmentList);
+        // ToLookUpQuerySyntax(employeeList,departmentList);
+
+        SelectManyMethodSyntax(employeeList, departmentList);
     }
 
     static void OrderByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
@@ -185,6 +188,24 @@ public class Program
         {
             Console.WriteLine($"Department ID: {departmentId}");
             Console.WriteLine($"  {emp.FirstName} {emp.LastName}");
+        }
+    }
+
+    static void SelectManyMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
+    {
+        string[] sentences =
+        {
+            "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat",
+            "A brown fox jump over the fence in the backyard",
+            "An elephant is playing with the group of lambs",
+            "Mr.Smith is getting married next week at the Vineyard"
+        };
+
+        var words = sentences.SelectMany(words => words.Split(" "));
+
+        foreach (var word in words)
+        {
+            Console.WriteLine(word);
         }
     }
 }
