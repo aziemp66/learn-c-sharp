@@ -150,6 +150,13 @@ public static class Data
             LongName = "Media"
         };
         departments.Add(department);
+        department = new Department
+        {
+            Id = 5,
+            ShortName = "GAY",
+            LongName = "Gay Division"
+        };
+        departments.Add(department);
 
         return departments;
     }

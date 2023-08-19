@@ -198,5 +198,13 @@
     "annual_salary": 412091.57,
     "is_manager": false,
     "department_id": 2
+  },
+  {
+    "id": 26,
+    "first_name": "Jack",
+    "last_name": "Hoffman",
+    "annual_salary": 65000.57,
+    "is_manager": true,
+    "department_id": 5
   }
 ]
