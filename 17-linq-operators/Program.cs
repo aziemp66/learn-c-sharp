@@ -17,7 +17,9 @@ public class Program
         // ThenByQuerySyntax(employeeList, departmentList);
 
         // GroupByMethodSyntax(employeeList, departmentList);
-        GroupByQuerySyntax(employeeList, departmentList);
+        // GroupByQuerySyntax(employeeList, departmentList);
+
+        ToLookUpMethodSyntax(employeeList, departmentList);
     }
 
     static void OrderByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
@@ -156,6 +158,33 @@ public class Program
                 count++;
             }
             Console.WriteLine();
+        }
+    }
+
+    static void ToLookUpMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var employeesByDepartment = employeeList.ToLookup(emp => emp.DepartmentId);
+
+        var departmentId = 1;
+        foreach (var emp in employeesByDepartment[departmentId])
+        {
+            Console.WriteLine($"Department ID: {departmentId}");
+            Console.WriteLine($"  {emp.FirstName} {emp.LastName}");
+        }
+    }
+
+    static void ToLookUpQuerySyntax(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var employeesByDepartment =
+            from emp in employeeList
+            group emp by emp.DepartmentId into deptGroup
+            select deptGroup;
+
+        var departmentId = 1;
+        foreach (var emp in employeesByDepartment.Single(group => group.Key == departmentId))
+        {
+            Console.WriteLine($"Department ID: {departmentId}");
+            Console.WriteLine($"  {emp.FirstName} {emp.LastName}");
         }
     }
 }
