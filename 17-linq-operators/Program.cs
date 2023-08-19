@@ -1,6 +1,7 @@
 ﻿namespace LinqOperators;
 
 using System.Globalization;
+using System.Linq;
 using TCPData;
 
 public class Program
@@ -22,7 +23,11 @@ public class Program
         // ToLookUpMethodSyntax(employeeList, departmentList);
         // ToLookUpQuerySyntax(employeeList,departmentList);
 
-        SelectManyMethodSyntax(employeeList, departmentList);
+        // SelectManyMethodSyntax(employeeList, departmentList);
+        // SelectManyQuerySyntax(employeeList, departmentList);
+
+        // Distinct();
+        DistinctBy(employeeList, departmentList);
     }
 
     static void OrderByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
@@ -48,7 +53,7 @@ public class Program
 
         foreach (var item in results)
             Console.WriteLine(
-                $"Id : {item.Id,-5} First Name : {item.FirstName,-10} Last Name : {item.LastName,-10} Annual Salary : {item.AnnualSalary,10}\tDepartment : {item.DepartmentName}"
+                $"Id : {item.Id, -5} First Name : {item.FirstName, -10} Last Name : {item.LastName, -10} Annual Salary : {item.AnnualSalary, 10}\tDepartment : {item.DepartmentName}"
             );
     }
 
@@ -69,7 +74,7 @@ public class Program
 
         foreach (var item in results)
             Console.WriteLine(
-                $"Id : {item.Id,-5} First Name : {item.FirstName,-10} Last Name : {item.LastName,-10} Annual Salary : {item.AnnualSalary,10}\tDepartment : {item.DepartmentName}"
+                $"Id : {item.Id, -5} First Name : {item.FirstName, -10} Last Name : {item.LastName, -10} Annual Salary : {item.AnnualSalary, 10}\tDepartment : {item.DepartmentName}"
             );
     }
 
@@ -100,7 +105,7 @@ public class Program
 
         foreach (var item in results)
             Console.WriteLine(
-                $"Id : {item.Id,-5} First Name : {item.FirstName,-10} Last Name : {item.LastName,-10} Annual Salary : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")),10}\tDepartment : {item.DepartmentName}"
+                $"Id : {item.Id, -5} First Name : {item.FirstName, -10} Last Name : {item.LastName, -10} Annual Salary : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")), 10}\tDepartment : {item.DepartmentName}"
             );
     }
 
@@ -121,7 +126,7 @@ public class Program
 
         foreach (var item in results)
             Console.WriteLine(
-                $"Id : {item.Id,-5} First Name : {item.FirstName,-10} Last Name : {item.LastName,-10} Annual Salary : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")),10}\tDepartment : {item.DepartmentName}"
+                $"Id : {item.Id, -5} First Name : {item.FirstName, -10} Last Name : {item.LastName, -10} Annual Salary : {item.AnnualSalary.ToString("C0", new CultureInfo("en-US")), 10}\tDepartment : {item.DepartmentName}"
             );
     }
 
@@ -137,7 +142,7 @@ public class Program
             int count = 1;
             foreach (var item in group)
             {
-                Console.WriteLine($"{count,3}. {item.FirstName} {item.LastName}");
+                Console.WriteLine($"{count, 3}. {item.FirstName} {item.LastName}");
                 count++;
             }
             Console.WriteLine();
@@ -157,7 +162,7 @@ public class Program
             int count = 1;
             foreach (var item in group)
             {
-                Console.WriteLine($"{count,3}. {item.FirstName} {item.LastName}");
+                Console.WriteLine($"{count, 3}. {item.FirstName} {item.LastName}");
                 count++;
             }
             Console.WriteLine();
@@ -227,6 +232,33 @@ public class Program
         foreach (var word in allWordsAcrossAllSentences)
         {
             Console.WriteLine(word);
+        }
+    }
+
+    static void Distinct()
+    {
+        string[] names = { "Madison", "John", "Klara", "John", "Alice", "Jamal", "Alice" };
+
+        var distinctNames = names.Distinct();
+
+        foreach (var name in distinctNames)
+        {
+            Console.WriteLine(name);
+        }
+    }
+
+    static void DistinctBy(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var employeesWithDepartment =
+            from emp in employeeList
+            join dept in departmentList on emp.DepartmentId equals dept.Id
+            select new { FullName = $"{emp.FirstName} {emp.LastName}", Department = dept.LongName };
+
+        var distinctDepartment = employeesWithDepartment.DistinctBy(e => e.Department);
+
+        foreach (var item in distinctDepartment)
+        {
+            Console.WriteLine(item);
         }
     }
 }
