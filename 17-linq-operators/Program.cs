@@ -29,9 +29,12 @@ public class Program
         // Distinct();
         // DistinctBy(employeeList, departmentList);
 
-        All();
-        Any();
-        Contains();
+        // All();
+        // Any();
+        // Contains();
+
+        First(employeeList, departmentList);
+        FirstOrDefault(employeeList, departmentList);
     }
 
     static void OrderByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
@@ -323,5 +326,32 @@ public class Program
             Console.Write(name + " ");
         }
         Console.WriteLine();
+    }
+
+    static void First(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results =
+            from emp in employeeList
+            join dept in departmentList on emp.DepartmentId equals dept.Id
+            select new { FullName = $"{emp.FirstName} {emp.LastName}", Department = dept.LongName };
+
+        var employeeInTech = results.First((e) => e.Department == "Technology");
+
+        Console.WriteLine($"Employee in Tech : {employeeInTech.FullName}");
+    }
+
+    static void FirstOrDefault(List<Employee> employeeList, List<Department> departmentList)
+    {
+        var results =
+            from emp in employeeList
+            join dept in departmentList on emp.DepartmentId equals dept.Id
+            select new { FullName = $"{emp.FirstName} {emp.LastName}", Department = dept.LongName };
+
+        var employeeInConstruction = results.FirstOrDefault((e) => e.Department == "Construction");
+        var defaultEmployee =
+            employeeInConstruction
+            ?? new { FullName = "Bob The Builder", Department = "Construction" };
+
+        Console.WriteLine($"Employee in Construction : {defaultEmployee.FullName}");
     }
 }
