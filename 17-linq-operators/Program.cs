@@ -27,7 +27,10 @@ public class Program
         // SelectManyQuerySyntax(employeeList, departmentList);
 
         // Distinct();
-        DistinctBy(employeeList, departmentList);
+        // DistinctBy(employeeList, departmentList);
+
+        All();
+        Any();
     }
 
     static void OrderByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
@@ -260,5 +263,46 @@ public class Program
         {
             Console.WriteLine(item);
         }
+    }
+
+    static void All()
+    {
+        List<Market> markets = new List<Market>
+        {
+            new Market { Name = "Emily's", Items = new string[] { "kiwi", "cheery", "banana" } },
+            new Market { Name = "Kim's", Items = new string[] { "melon", "mango", "olive" } },
+            new Market { Name = "Adam's", Items = new string[] { "kiwi", "apple", "orange" } },
+        };
+
+        var names =
+            from market in markets
+            where market.Items.All(item => item.Length == 5)
+            select market.Name;
+
+        foreach (var name in names)
+        {
+            Console.WriteLine(name);
+        }
+    }
+
+    static void Any()
+    {
+        List<Market> markets = new List<Market>
+        {
+            new Market { Name = "Emily's", Items = new string[] { "kiwi", "cheery", "banana" } },
+            new Market { Name = "Kim's", Items = new string[] { "melon", "mango", "olive" } },
+            new Market { Name = "Adam's", Items = new string[] { "kiwi", "apple", "orange" } },
+        };
+
+        var names =
+            from market in markets
+            where market.Items.Any(item => item.Length == 5)
+            select market.Name;
+
+        foreach (var name in names)
+        {
+            Console.Write(name + " ");
+        }
+        Console.WriteLine();
     }
 }
