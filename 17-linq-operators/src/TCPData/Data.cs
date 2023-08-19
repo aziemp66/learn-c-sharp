@@ -44,7 +44,73 @@ public static class Data
             FirstName = "Jane",
             LastName = "Stevens",
             AnnualSalary = 200_000.2m,
+            IsManager = true,
+            DepartmentId = 3
+        };
+        employees.Add(employee);
+
+        employee = new Employee
+        {
+            Id = 5,
+            FirstName = "Jane",
+            LastName = "Stevens",
+            AnnualSalary = 40_000.2m,
             IsManager = false,
+            DepartmentId = 1
+        };
+        employees.Add(employee);
+
+        employee = new Employee
+        {
+            Id = 6,
+            FirstName = "John",
+            LastName = "Smith",
+            AnnualSalary = 55000.4m,
+            IsManager = false,
+            DepartmentId = 1
+        };
+        employees.Add(employee);
+
+        employee = new Employee
+        {
+            Id = 7,
+            FirstName = "Emily",
+            LastName = "Johnson",
+            AnnualSalary = 75000.5m,
+            IsManager = true,
+            DepartmentId = 2
+        };
+        employees.Add(employee);
+
+        employee = new Employee
+        {
+            Id = 8,
+            FirstName = "Michael",
+            LastName = "Davis",
+            AnnualSalary = 90000.6m,
+            IsManager = false,
+            DepartmentId = 2
+        };
+        employees.Add(employee);
+
+        employee = new Employee
+        {
+            Id = 9,
+            FirstName = "Amanda",
+            LastName = "Williams",
+            AnnualSalary = 65000.7m,
+            IsManager = false,
+            DepartmentId = 2
+        };
+        employees.Add(employee);
+
+        employee = new Employee
+        {
+            Id = 10,
+            FirstName = "Kevin",
+            LastName = "Brown",
+            AnnualSalary = 55000.8m,
+            IsManager = true,
             DepartmentId = 3
         };
         employees.Add(employee);
