@@ -33,12 +33,15 @@ public class Program
         // Any();
         // Contains();
 
-        First(employeeList, departmentList);
-        FirstOrDefault(employeeList, departmentList);
-        Last(employeeList, departmentList);
-        LastOrDefault(employeeList, departmentList);
-        Single(employeeList, departmentList);
-        SingleOrDefault(employeeList, departmentList);
+        // First(employeeList, departmentList);
+        // FirstOrDefault(employeeList, departmentList);
+        // Last(employeeList, departmentList);
+        // LastOrDefault(employeeList, departmentList);
+        // Single(employeeList, departmentList);
+        // SingleOrDefault(employeeList, departmentList);
+
+        Except();
+        ExceptBy();
     }
 
     static void OrderByMethodSyntax(List<Employee> employeeList, List<Department> departmentList)
@@ -270,6 +273,44 @@ public class Program
         foreach (var item in distinctDepartment)
         {
             Console.WriteLine(item);
+        }
+    }
+
+    static void Except()
+    {
+        var collection1 = new List<string> { "Alice", "Bob", "Charlie", };
+
+        var collection2 = new List<string> { "Alice", "Donna", "Kimbel", };
+
+        var exceptResult = collection1.Except(collection2);
+        foreach (var item in exceptResult)
+        {
+            Console.WriteLine(item);
+        }
+    }
+
+    static void ExceptBy()
+    {
+        var candidates = new List<Person>
+        {
+            new Person() { SSN = "1234567890", Name = "John Doe" },
+            new Person() { SSN = "1234567891", Name = "Jane Doe" },
+            new Person() { SSN = "1234567892", Name = "Emily Johnson" },
+            new Person() { SSN = "1234567893", Name = "William Brown" },
+            new Person() { SSN = "1234567894", Name = "Sarah Davis" },
+        };
+
+        var employees = new List<Person>
+        {
+            new Person() { SSN = "1234567890", Name = "John Doe" },
+            new Person() { SSN = "1234567891", Name = "Jane Doe" }
+        };
+
+        var potentialCandidate = candidates.ExceptBy(employees.Select(e => e.SSN), e => e.SSN);
+
+        foreach (var item in potentialCandidate)
+        {
+            Console.WriteLine(item.ToString());
         }
     }
 
