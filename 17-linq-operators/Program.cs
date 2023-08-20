@@ -55,6 +55,8 @@ public class Program
         // Partition.Take(employeeList);
         // Partition.TakeWhile(employeeList);
 
-        Partition.Chunk(employeeList);
+        // Partition.Chunk(employeeList);
+
+        Aggregate.CustomAggregate(employeeList);
     }
 }

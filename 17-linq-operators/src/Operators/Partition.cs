@@ -63,7 +63,7 @@ public static class Partition
 
     public static void Chunk(List<Employee> employeeList)
     {
-        var chunkResults = employeeList.Chunk(5);
+        var chunkResults = employeeList.Chunk(3);
 
         int count = 1;
         foreach (var chunk in chunkResults)
