@@ -53,6 +53,8 @@ public class Program
         // Partition.SkipWhile(employeeList);
 
         // Partition.Take(employeeList);
-        Partition.TakeWhile(employeeList);
+        // Partition.TakeWhile(employeeList);
+
+        Partition.Chunk(employeeList);
     }
 }

@@ -60,4 +60,23 @@ public static class Partition
             );
         }
     }
+
+    public static void Chunk(List<Employee> employeeList)
+    {
+        var chunkResults = employeeList.Chunk(5);
+
+        int count = 1;
+        foreach (var chunk in chunkResults)
+        {
+            Console.WriteLine($"Chunk {count} :");
+            foreach (var employee in chunk)
+            {
+                Console.WriteLine(
+                    $"{employee.FirstName} {employee.LastName} : {employee.AnnualSalary.ToString("C0", new CultureInfo("en-US"))}"
+                );
+            }
+            count++;
+            Console.WriteLine();
+        }
+    }
 }
