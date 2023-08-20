@@ -5,24 +5,27 @@ using System.Globalization;
 
 public static class Partition
 {
-    public static void Skip()
+    public static void Skip(List<Employee> employeeList)
     {
-        int[] marks = { 50, 42, 70, 83, 42, 90, 79 };
-        var skippedMarks = marks.Skip(2);
+        var skippedResults = employeeList.Skip(20);
 
-        foreach (var item in skippedMarks)
+        foreach (var employee in skippedResults)
         {
-            Console.WriteLine(item);
+            Console.WriteLine(
+                $"{employee.FirstName} {employee.LastName} : {employee.AnnualSalary.ToString("C0", new CultureInfo("en-US"))}"
+            );
         }
     }
 
     public static void SkipWhile(List<Employee> employeeList)
     {
-        var SkippedWhileResults = employeeList
-            .OrderBy((e) => e.AnnualSalary)
-            .SkipWhile((e) => e.AnnualSalary < 100_000m);
+        var skippedWhileResults = (
+            from emp in employeeList
+            orderby emp.AnnualSalary
+            select emp
+        ).SkipWhile(e => e.AnnualSalary < 100_000m);
 
-        foreach (var employee in SkippedWhileResults)
+        foreach (var employee in skippedWhileResults)
         {
             Console.WriteLine(
                 $"{employee.FirstName} {employee.LastName} : {employee.AnnualSalary.ToString("C0", new CultureInfo("en-US"))}"

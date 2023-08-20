@@ -49,7 +49,7 @@ public class Program
         // Element.Single(employeeList, departmentList);
         // Element.SingleOrDefault(employeeList, departmentList);
 
-        Partition.Skip();
+        Partition.Skip(employeeList);
         Partition.SkipWhile(employeeList);
     }
 }
