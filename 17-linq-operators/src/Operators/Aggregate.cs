@@ -48,4 +48,48 @@ public static class Aggregate
             $"Total Taxes Paid By All Employee : {results.ToString("C2", new CultureInfo("en-US"))}"
         );
     }
+
+    public static void Count(List<Employee> employeeList)
+    {
+        var numOfEmployees = employeeList.Count();
+
+        Console.WriteLine($"Number Of Employees : {numOfEmployees}");
+    }
+
+    public static void MaxBy(List<Employee> employeeList)
+    {
+        var maxSalaryEmployee = employeeList.MaxBy((e) => e.AnnualSalary);
+
+        if (maxSalaryEmployee == null)
+        {
+            throw new NullReferenceException();
+        }
+
+        Console.WriteLine(
+            $"Highest Paid Employee: {maxSalaryEmployee.FirstName + " " + maxSalaryEmployee.LastName} : {maxSalaryEmployee.AnnualSalary.ToString("C2", new CultureInfo("en-US"))}"
+        );
+    }
+
+    public static void MinBy(List<Employee> employeeList)
+    {
+        var minSalaryEmployee = employeeList.MinBy((e) => e.AnnualSalary);
+
+        if (minSalaryEmployee == null)
+        {
+            throw new NullReferenceException();
+        }
+
+        Console.WriteLine(
+            $"Lowest Paid Employee: {minSalaryEmployee.FirstName + " " + minSalaryEmployee.LastName} : {minSalaryEmployee.AnnualSalary.ToString("C2", new CultureInfo("en-US"))}"
+        );
+    }
+
+    public static void Sum(List<Employee> employeeList)
+    {
+        var EmployeesSalary = employeeList.Sum(e => e.AnnualSalary);
+
+        Console.WriteLine(
+            $"Employee Salary Cost : {EmployeesSalary.ToString("C2", new CultureInfo("en-US"))}"
+        );
+    }
 }

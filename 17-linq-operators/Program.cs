@@ -57,6 +57,10 @@ public class Program
 
         // Partition.Chunk(employeeList);
 
-        Aggregate.CustomAggregate(employeeList);
+        // Aggregate.CustomAggregate(employeeList);
+        Aggregate.Count(employeeList);
+        Aggregate.MaxBy(employeeList);
+        Aggregate.MinBy(employeeList);
+        Aggregate.Sum(employeeList);
     }
 }
