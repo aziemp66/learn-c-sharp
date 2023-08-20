@@ -48,5 +48,8 @@ public class Program
         // Element.LastOrDefault(employeeList, departmentList);
         // Element.Single(employeeList, departmentList);
         // Element.SingleOrDefault(employeeList, departmentList);
+
+        Partition.Skip();
+        Partition.SkipWhile(employeeList);
     }
 }
